@@ -12,3 +12,24 @@ You could use **any programming language**. But you must provide instructions in
 [ptaa]: <https://github.com/glaucogoncalves/pta/tree/master/pta-server/files>
 [ptac]: <https://github.com/glaucogoncalves/pta/tree/master/pta-client.py>
 [ptad]: <https://github.com/glaucogoncalves/pta/tree/master/pta.pdf>
+
+# Implementation
+
+PTA server implementation involves exchanging messages between the PTA-SERVER and the client. Primarily, in order to enable program logging, do:
+
+
+```bash
+pip install colorlog
+```
+
+After, in the first terminal, navigate to the pta-server directory and run:
+
+```python
+python3 pta-server.py
+```
+
+Then, in the second terminal, execute the client to perform the necessary tests on the code:
+
+```python3
+python3 pta-client.py
+```
