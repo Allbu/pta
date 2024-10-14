@@ -1,6 +1,8 @@
 import logging
 import os
+import signal
 import socket
+import sys
 
 import colorlog
 
@@ -142,12 +144,25 @@ def start_server():
         server_socket.listen(5)
         logger.info(f"Server listening on port {PORT}")
 
+        def signal_handler(sig, frame):
+            # logger.info("Interrupt received, shutting down...")
+            if server_socket:
+                server_socket.close()
+            sys.exit(0)
+
+        signal.signal(signal.SIGINT, signal_handler)
+
         while True:
             client_socket, addr = server_socket.accept()
             logger.info(f"Connection from {addr}")
             handle_client(client_socket)
     except Exception as e:
         logger.critical(f"Error starting server: {e}")
+
+    finally:
+        if server_socket:
+            server_socket.close()
+            logger.info("Server socket closed.")
 
 
 if __name__ == "__main__":
