@@ -6,10 +6,11 @@ import colorlog
 
 # Configuration
 PORT = 11550
-VALID_CLIENTS = ["ALICE", "BOB", "CHARLIE"]
+# Valid clients are stored in a file users.txt
+VALID_CLIENTS = open("users.txt").read().splitlines()
 FILES_DIR = "./files"
 
-# Set up colorlog
+# Set up logging
 handler = colorlog.StreamHandler()
 handler.setFormatter(
     colorlog.ColoredFormatter(
